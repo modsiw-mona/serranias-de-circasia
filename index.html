@@ -107,7 +107,7 @@
   .mountains{position:absolute;left:0;right:0;bottom:-1px;z-index:0;pointer-events:none;line-height:0}
   .mountains svg{width:100%;height:auto;display:block}
   .mountains .layer{will-change:transform}
-  .scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;color:var(--coffee);font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none}
+  .scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;color:var(--cream);font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none}
   .scroll-hint i{width:22px;height:34px;border:2px solid currentColor;border-radius:12px;position:relative}
   .scroll-hint i::after{content:"";position:absolute;left:50%;top:6px;width:4px;height:7px;margin-left:-2px;background:currentColor;border-radius:2px;animation:wheel 1.8s infinite}
   @keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
@@ -161,22 +161,41 @@
   .bean{position:absolute;width:26px;opacity:.13;color:#F2C58E;animation:float-bean linear infinite}
   @keyframes float-bean{0%{transform:translateY(120%) rotate(0)}100%{transform:translateY(-140%) rotate(360deg)}}
 
+  /* ---------- Senderos ---------- */
+  .trails{background:#fff;padding-top:clamp(72px,10vw,130px);overflow:hidden;position:relative}
+  .trails-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,70px);align-items:end}
+  .trail-points{list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px}
+  .trail-points li{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--green);display:flex;align-items:center;gap:8px}
+  .trail-points li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold)}
+  .trail-ill{display:block;width:100%;height:clamp(260px,40vw,520px);margin-top:clamp(30px,5vw,60px)}
+  .trail-bed{stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 3s ease}
+  .trail-dash{opacity:0;transition:opacity 1s ease 2.6s}
+  .trail-ill.in .trail-bed{stroke-dashoffset:0}
+  .trail-ill.in .trail-dash{opacity:1}
+  .walker{opacity:0;transition:opacity .6s ease 3s}
+  .trail-ill.in .walker{opacity:1}
+  .palm{transform-box:fill-box;transform-origin:bottom center;animation:sway 6s ease-in-out infinite}
+  @keyframes sway{50%{transform:rotate(1.6deg)}}
+  .trail-note{position:absolute;right:20px;bottom:14px;font-size:.72rem;color:rgba(255,255,255,.85)}
+  @media (max-width:860px){.trails-head{grid-template-columns:1fr}}
+
   /* ---------- Tipologías ---------- */
   .homes{background:var(--paper)}
+  .homes > .wrap{width:min(1320px,100% - 32px)}
   .homes-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
   .type-tabs{display:inline-flex;gap:6px;padding:6px;margin-top:40px;border-radius:999px;background:var(--cream);border:1px solid var(--line)}
   .type-tabs button,.level-tabs button{font:inherit;border:0;background:none;cursor:pointer;color:var(--coffee-2);transition:background .25s,color .25s}
   .type-tabs button{padding:12px 26px;border-radius:999px;font-weight:700;font-size:.95rem}
   .type-tabs button small{display:block;font-weight:500;font-size:.76rem;opacity:.75}
   .type-tabs button[aria-selected="true"]{background:var(--coffee);color:var(--cream)}
-  .types{display:grid;grid-template-columns:minmax(260px,.75fr) 1.6fr;gap:clamp(28px,4vw,60px);margin-top:36px;align-items:start}
-  .spec h3{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:400}
+  .types{display:grid;grid-template-columns:minmax(230px,280px) 1fr;gap:clamp(28px,4vw,60px);margin-top:36px;align-items:start}
+  .spec h3{font-size:clamp(1.5rem,2.2vw,1.9rem);font-weight:400}
   .spec h3 em{color:var(--terracotta)}
   .spec dl{margin-top:22px;border-top:1px solid var(--line)}
-  .spec dl div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
-  .spec dt{color:var(--muted);font-size:.92rem}
+  .spec dl div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;font-size:.88rem;border-bottom:1px solid var(--line)}
+  .spec dt{color:var(--muted)}
   .spec dd{font-weight:700;color:var(--coffee);text-align:right}
-  .spec .levels{margin-top:22px;display:grid;gap:12px;font-size:.94rem;color:var(--muted)}
+  .spec .levels{margin-top:18px;display:grid;gap:10px;font-size:.86rem;color:var(--muted)}
   .spec .levels b{color:var(--coffee);display:block;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase}
   .spec .btn{margin-top:28px}
   .plan{position:relative}
@@ -352,6 +371,7 @@
     .reveal{opacity:1;transform:none}
     .branch path.draw{stroke-dashoffset:0}
     .branch .cherry,.branch .leaf{transform:none}
+    .trail-bed{stroke-dashoffset:0}.trail-dash,.walker{opacity:1}
   }
 </style>
 </head>
@@ -401,14 +421,6 @@
     </div>
   </div>
 
-  <!-- Capas de montaña con parallax -->
-  <div class="mountains" aria-hidden="true">
-    <svg viewBox="0 0 1440 260" preserveAspectRatio="none">
-      <path class="layer" data-speed="0.35" fill="#7E9A6E" opacity=".55" d="M0 150 L120 95 L230 130 L360 60 L470 115 L590 70 L720 120 L850 50 L980 110 L1100 75 L1230 125 L1340 85 L1440 110 L1440 260 L0 260Z"/>
-      <path class="layer" data-speed="0.2" fill="#3F5B3A" opacity=".75" d="M0 190 L140 140 L260 175 L400 120 L540 170 L660 135 L800 180 L930 125 L1070 170 L1200 140 L1330 175 L1440 150 L1440 260 L0 260Z"/>
-      <path class="layer" data-speed="0.08" fill="#F7F1E6" d="M0 230 C180 200 300 215 460 222 C640 230 760 196 940 206 C1110 216 1260 236 1440 214 L1440 260 L0 260Z"/>
-    </svg>
-  </div>
   <a href="#proyecto" class="scroll-hint" aria-label="Bajar"><i></i></a>
 </header>
 
@@ -444,6 +456,55 @@
     <div class="fact"><b data-count="600" data-prefix="$" data-suffix=" M">$600 M</b><span>Precio desde (COP)</span></div>
   </div>
   <span class="bleed-note">Render ilustrativo*</span>
+</section>
+
+<!-- ===================== SENDEROS ===================== -->
+<section class="trails" id="senderos">
+  <div class="wrap trails-head">
+    <div>
+      <p class="eyebrow reveal">Senderos</p>
+      <h2 class="reveal d1">Caminos entre <em>cafetales</em></h2>
+    </div>
+    <div class="reveal d2">
+      <p class="lead">Senderos ecológicos que recorren el conjunto entre cafetales, zonas verdes y vegetación nativa. Para caminar al amanecer, salir a trotar o simplemente desconectarse frente a la cordillera.</p>
+      <ul class="trail-points">
+        <li>Recorridos peatonales</li><li>Vegetación nativa</li><li>Vista a la montaña</li>
+      </ul>
+    </div>
+  </div>
+  <svg class="trail-ill" id="trailIll" viewBox="0 0 1200 480" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Ilustración de un sendero que sube entre cafetales y palmas de cera hacia las casas del conjunto">
+    <circle cx="960" cy="112" r="56" fill="#F4E2BF"/>
+    <path d="M0 262 L140 172 L250 222 L390 122 L520 212 L650 142 L780 217 L900 152 L1040 232 L1200 172 L1200 480 L0 480Z" fill="#E7ECDF"/>
+    <path d="M0 332 C200 252 380 272 560 302 C740 332 900 252 1200 272 L1200 480 L0 480Z" fill="#CBD8BB"/>
+    <g fill="none" stroke="#8FA77D" stroke-width="9" stroke-linecap="round" stroke-dasharray="1 17">
+      <path d="M30 352 C220 284 380 300 560 326 C740 352 900 286 1180 300"/>
+      <path d="M20 376 C220 310 380 326 560 352 C740 378 900 312 1190 326"/>
+      <path d="M10 400 C220 336 380 352 560 378 C740 404 900 338 1200 352"/>
+    </g>
+    <g>
+      <rect x="800" y="270" width="26" height="16" fill="#fff"/><polygon points="796,271 813,258 830,271" fill="#B4532A"/>
+      <rect x="832" y="268" width="26" height="16" fill="#fff"/><polygon points="828,269 845,256 862,269" fill="#B4532A"/>
+      <rect x="864" y="266" width="26" height="16" fill="#fff"/><polygon points="860,267 877,254 894,267" fill="#94401D"/>
+      <rect x="896" y="264" width="26" height="16" fill="#fff"/><polygon points="892,265 909,252 926,265" fill="#B4532A"/>
+    </g>
+    <path d="M0 410 C220 368 420 388 640 402 C860 416 1000 376 1200 386 L1200 480 L0 480Z" fill="#9FB58C"/>
+    <g fill="none" stroke="#5E7A52" stroke-width="11" stroke-linecap="round" stroke-dasharray="1 20">
+      <path d="M0 432 C220 392 420 410 640 424 C860 438 1000 400 1200 410"/>
+      <path d="M0 458 C220 418 420 436 640 450 C860 464 1000 426 1200 436"/>
+    </g>
+    <g class="palm" stroke="#5A4334" stroke-width="4" stroke-linecap="round" fill="none">
+      <path d="M1050 420 C1046 360 1052 300 1048 238"/>
+      <g stroke="#3F5B3A" stroke-width="5"><path d="M1048 238 C1030 226 1012 232 998 248"/><path d="M1048 238 C1066 224 1086 228 1100 244"/><path d="M1048 238 C1040 216 1024 210 1010 214"/><path d="M1048 238 C1058 214 1076 208 1090 212"/><path d="M1048 238 C1048 220 1050 208 1052 198"/></g>
+    </g>
+    <g class="palm" stroke="#5A4334" stroke-width="3.5" stroke-linecap="round" fill="none">
+      <path d="M240 436 C236 386 242 336 238 290"/>
+      <g stroke="#3F5B3A" stroke-width="4.5"><path d="M238 290 C222 280 206 284 194 298"/><path d="M238 290 C254 278 272 282 284 296"/><path d="M238 290 C230 270 216 266 204 270"/><path d="M238 290 C248 270 264 264 276 268"/><path d="M238 290 C238 274 240 262 242 254"/></g>
+    </g>
+    <path class="trail-bed" d="M150 480 C260 432 210 402 340 386 C500 366 560 352 480 332 C400 314 560 300 690 294 C750 291 785 289 812 286" fill="none" stroke="#F3EBDD" stroke-width="14" stroke-linecap="round"/>
+    <path class="trail-dash" d="M150 480 C260 432 210 402 340 386 C500 366 560 352 480 332 C400 314 560 300 690 294 C750 291 785 289 812 286" fill="none" stroke="#C8963E" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 10"/>
+    <circle class="walker" r="7" fill="#B4532A"><animateMotion dur="16s" repeatCount="indefinite" path="M150 480 C260 432 210 402 340 386 C500 366 560 352 480 332 C400 314 560 300 690 294 C750 291 785 289 812 286"/></circle>
+  </svg>
+  <span class="trail-note">Ilustración de referencia</span>
 </section>
 
 <!-- ===================== FRANJA: CASAS ===================== -->
@@ -823,7 +884,7 @@
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, {threshold:.15, rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal, .branch, .bleed').forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal, .branch, .bleed, .trail-ill').forEach(el => io.observe(el));
 
   // Contadores
   const countIO = new IntersectionObserver((entries) => {

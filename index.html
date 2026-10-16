@@ -79,7 +79,7 @@
 
   /* ---------- Hero ---------- */
   .hero{min-height:100svh;display:flex;align-items:center;color:#fff;overflow:hidden;isolation:isolate}
-  .hero-bg{position:absolute;inset:-6% 0 0 0;z-index:-3;background:url("img/aerea-montana.jpg") center 40%/cover no-repeat;transform:scale(1.08);animation:slowzoom 24s ease-out forwards}
+  .hero-bg{position:absolute;inset:0;z-index:-3;background:url("img/hero-aerea.jpg") center 58%/cover no-repeat;transform:scale(1.04);animation:slowzoom 20s ease-out forwards}
   @keyframes slowzoom{to{transform:scale(1)}}
   .hero::before{content:"";position:absolute;inset:0;z-index:-2;background:
     linear-gradient(180deg,rgba(30,22,16,.55) 0%,rgba(30,22,16,.15) 40%,rgba(30,22,16,.35) 70%,rgba(30,22,16,.75) 100%),
@@ -129,34 +129,82 @@
   .intro ul.checks svg{flex:none;width:22px;height:22px;color:var(--green);margin-top:2px}
   @media (max-width:860px){.intro-grid{grid-template-columns:1fr}.arch-wrap{max-width:380px}}
 
-  /* ---------- Cifras ---------- */
-  .stats{background:var(--coffee);color:var(--cream);overflow:hidden}
-  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;z-index:1}
-  .stat{text-align:center;padding:10px}
-  .stat b{display:block;font-family:var(--display);font-size:clamp(2.4rem,5vw,3.6rem);font-weight:600;color:#F2C58E;line-height:1}
-  .stat span{display:block;margin-top:10px;font-size:.88rem;letter-spacing:.08em;text-transform:uppercase;opacity:.8;font-weight:600}
-  @media (max-width:760px){.stats .wrap{grid-template-columns:repeat(2,1fr);gap:36px 16px}}
+  /* ---------- Franjas fotográficas a todo lo ancho ---------- */
+  .bleed{position:relative;min-height:clamp(560px,92vh,940px);display:flex;flex-direction:column;color:#fff;overflow:hidden;isolation:isolate}
+  .bleed > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.08);transition:transform 2.6s cubic-bezier(.2,.7,.2,1)}
+  .bleed.in > img{transform:scale(1)}
+  .bleed::after{content:"";position:absolute;inset:0;z-index:-1}
+  .bleed-title{font-family:var(--display);font-weight:400;color:#fff;line-height:.98;letter-spacing:-.015em;font-size:clamp(3rem,8.4vw,7.6rem);text-shadow:0 2px 30px rgba(0,0,0,.25)}
+  .bleed-title em{font-style:italic;font-weight:300;color:#fff}
+  .bleed-note{position:absolute;right:20px;bottom:16px;font-size:.72rem;opacity:.8}
+  /* título arriba a la izquierda + cifras abajo */
+  .bleed--corner{justify-content:space-between}
+  .bleed--corner > img{object-position:center 45%}
+  .bleed--corner::after{background:linear-gradient(180deg,rgba(30,22,16,.55) 0%,rgba(30,22,16,0) 42%,rgba(30,22,16,0) 55%,rgba(30,22,16,.8) 100%)}
+  .bleed--corner .bleed-title{padding-top:clamp(60px,9vw,120px)}
+  /* título centrado */
+  .bleed--center{align-items:center;justify-content:center;text-align:center}
+  .bleed--center::after{background:rgba(30,22,16,.38)}
+  .bleed--center p{margin-top:22px;font-size:.8rem;letter-spacing:.26em;text-transform:uppercase;font-weight:600;opacity:.92}
+  .facts{display:flex;flex-wrap:wrap;padding-bottom:clamp(40px,6vw,70px)}
+  .fact{padding:6px clamp(18px,3vw,44px);border-left:1px solid rgba(255,255,255,.35)}
+  .fact:first-child{padding-left:0;border-left:0}
+  .fact b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(2rem,4vw,3.2rem);line-height:1.05}
+  .fact span{display:block;margin-top:6px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;opacity:.85;font-weight:600}
+  @media (max-width:640px){
+    .bleed{min-height:78vh}
+    .facts{display:grid;grid-template-columns:1fr 1fr;gap:22px 0}
+    .fact{padding:0 0 0 16px}
+    .fact:nth-child(odd){padding-left:0;border-left:0}
+  }
   .beans{position:absolute;inset:0;pointer-events:none;z-index:0}
   .bean{position:absolute;width:26px;opacity:.13;color:#F2C58E;animation:float-bean linear infinite}
   @keyframes float-bean{0%{transform:translateY(120%) rotate(0)}100%{transform:translateY(-140%) rotate(360deg)}}
 
-  /* ---------- Casas ---------- */
+  /* ---------- Tipologías ---------- */
   .homes{background:var(--paper)}
   .homes-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
-  .panorama{margin-top:46px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);position:relative}
-  .panorama img{width:100%;aspect-ratio:3/1;object-fit:cover}
-  .panorama figcaption{position:absolute;left:18px;bottom:16px;background:rgba(255,252,246,.92);padding:8px 14px;border-radius:999px;font-size:.8rem;font-weight:700;color:var(--coffee)}
-  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px}
-  .feature{background:var(--cream);border-radius:var(--radius);padding:30px 26px;border:1px solid var(--line);transition:transform .35s, box-shadow .35s}
-  .feature:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-  .feature .ico{width:54px;height:54px;border-radius:14px;background:var(--terracotta);color:#fff;display:grid;place-items:center;margin-bottom:18px}
-  .feature:nth-child(3n+2) .ico{background:var(--green)}
-  .feature:nth-child(3n) .ico{background:var(--gold)}
-  .feature .ico svg{width:28px;height:28px}
-  .feature h3{font-size:1.3rem;margin-bottom:8px}
-  .feature p{color:var(--muted);font-size:.96rem}
-  @media (max-width:900px){.features{grid-template-columns:1fr 1fr}}
-  @media (max-width:560px){.features{grid-template-columns:1fr}.panorama img{aspect-ratio:16/9}}
+  .type-tabs{display:inline-flex;gap:6px;padding:6px;margin-top:40px;border-radius:999px;background:var(--cream);border:1px solid var(--line)}
+  .type-tabs button,.level-tabs button{font:inherit;border:0;background:none;cursor:pointer;color:var(--coffee-2);transition:background .25s,color .25s}
+  .type-tabs button{padding:12px 26px;border-radius:999px;font-weight:700;font-size:.95rem}
+  .type-tabs button small{display:block;font-weight:500;font-size:.76rem;opacity:.75}
+  .type-tabs button[aria-selected="true"]{background:var(--coffee);color:var(--cream)}
+  .types{display:grid;grid-template-columns:minmax(260px,.75fr) 1.6fr;gap:clamp(28px,4vw,60px);margin-top:36px;align-items:start}
+  .spec h3{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:400}
+  .spec h3 em{color:var(--terracotta)}
+  .spec dl{margin-top:22px;border-top:1px solid var(--line)}
+  .spec dl div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .spec dt{color:var(--muted);font-size:.92rem}
+  .spec dd{font-weight:700;color:var(--coffee);text-align:right}
+  .spec .levels{margin-top:22px;display:grid;gap:12px;font-size:.94rem;color:var(--muted)}
+  .spec .levels b{color:var(--coffee);display:block;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase}
+  .spec .btn{margin-top:28px}
+  .plan{position:relative}
+  .level-tabs{display:flex;gap:22px;border-bottom:1px solid var(--line);margin-bottom:18px}
+  .level-tabs button{padding:10px 2px;font-weight:700;font-size:.95rem;border-bottom:2px solid transparent;margin-bottom:-1px}
+  .level-tabs button[aria-selected="true"]{color:var(--terracotta);border-color:var(--terracotta)}
+  .plan-frame{display:block;width:100%;border:0;padding:0;background:#f3f1ee;border-radius:var(--radius);overflow:hidden;cursor:zoom-in;box-shadow:var(--shadow)}
+  .plan-frame img{width:100%;aspect-ratio:2.25/1;object-fit:cover;object-position:top;transition:opacity .25s}
+  .plan-frame img.fading{opacity:0}
+  .plan figcaption{margin-top:14px;color:var(--muted);font-size:.92rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .plan figcaption b{color:var(--coffee)}
+  @media (max-width:900px){.types{grid-template-columns:1fr}.plan{order:-1}}
+  @media (max-width:480px){.type-tabs{display:flex}.type-tabs button{flex:1;padding:10px 12px}}
+
+  /* ---------- Amenidades ---------- */
+  .amenities{background:var(--coffee);color:var(--cream)}
+  .amenities h2{color:var(--cream);max-width:16ch}
+  .amenities h2 em{color:#F2C58E}
+  .amenities .eyebrow{color:#F2C58E}
+  .am-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+  .am-head p{color:rgba(247,241,230,.7);max-width:40ch}
+  .am-list{list-style:none;margin-top:50px;counter-reset:am;display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(30px,6vw,90px)}
+  .am-list li{display:grid;grid-template-columns:64px 1fr;gap:6px 10px;padding:28px 0;border-top:1px solid rgba(247,241,230,.16);counter-increment:am}
+  .am-list li:nth-last-child(-n+2){border-bottom:1px solid rgba(247,241,230,.16)}
+  .am-list li::before{content:counter(am, decimal-leading-zero);font-family:var(--display);font-style:italic;font-size:1.6rem;color:var(--gold);line-height:1.2;grid-row:span 2}
+  .am-list h3{font-size:1.32rem;font-weight:500;color:var(--cream)}
+  .am-list p{color:rgba(247,241,230,.68);font-size:.97rem;max-width:44ch}
+  @media (max-width:760px){.am-list{grid-template-columns:1fr}.am-list li:nth-last-child(2){border-bottom:0}}
 
   /* ---------- Divisor rama de café ---------- */
   .branch{display:flex;justify-content:center;padding:0;margin:-6px 0}
@@ -183,14 +231,33 @@
   .location h2 em{color:#F2C58E}
   .location .eyebrow{color:#F2C58E}
   .location p.lead{color:rgba(247,241,230,.8)}
-  .loc-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(30px,5vw,70px);align-items:center;position:relative;z-index:1}
-  .map{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;box-shadow:0 30px 60px -25px rgba(0,0,0,.6);border:6px solid rgba(255,255,255,.08);background:var(--green)}
-  .map iframe{width:100%;height:100%;border:0;filter:saturate(.85) sepia(.12)}
-  .loc-list{list-style:none;margin-top:28px;display:grid;gap:16px}
-  .loc-list li{display:flex;gap:14px;align-items:center}
-  .loc-list svg{width:24px;height:24px;color:#F2C58E;flex:none}
-  .loc-bg{position:absolute;left:0;right:0;bottom:0;opacity:.18;pointer-events:none}
-  @media (max-width:860px){.loc-grid{grid-template-columns:1fr}}
+  .loc-bg{position:absolute;left:0;right:0;bottom:0;width:100%;height:auto;opacity:.18;pointer-events:none}
+  .loc-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,70px);align-items:end;position:relative;z-index:1}
+  .loc-facts{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(247,241,230,.18)}
+  .loc-facts div{padding:20px 0;border-bottom:1px solid rgba(247,241,230,.18)}
+  .loc-facts div:nth-child(odd){padding-right:20px;border-right:1px solid rgba(247,241,230,.18)}
+  .loc-facts div:nth-child(even){padding-left:24px}
+  .loc-facts b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.05;color:#F2C58E}
+  .loc-facts span{display:block;margin-top:6px;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,241,230,.75);font-weight:600}
+  .map-tabs{display:flex;gap:26px;flex-wrap:wrap;margin-top:56px;border-bottom:1px solid rgba(247,241,230,.18);position:relative;z-index:1}
+  .map-tabs button{font:inherit;background:none;border:0;cursor:pointer;color:rgba(247,241,230,.65);padding:12px 2px;font-weight:700;font-size:.95rem;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .25s,border-color .25s}
+  .map-tabs button[aria-selected="true"]{color:#F2C58E;border-color:#F2C58E}
+  .map-view{margin-top:22px;position:relative;z-index:1}
+  .map-frame{display:block;width:100%;border:0;padding:0;background:var(--green);border-radius:var(--radius);overflow:hidden;cursor:zoom-in;box-shadow:0 30px 60px -25px rgba(0,0,0,.6)}
+  .map-frame img{width:100%;height:auto;transition:opacity .25s}
+  .map-frame img.fading{opacity:0}
+  .map-view figcaption{margin-top:14px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:rgba(247,241,230,.75);font-size:.94rem}
+  .near{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:30px;position:relative;z-index:1}
+  .near li{display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;border:1px solid rgba(247,241,230,.22);font-size:.88rem;font-weight:600}
+  .near svg{width:16px;height:16px;color:#F2C58E}
+  .gmap-row{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(24px,4vw,50px);margin-top:56px;align-items:center;position:relative;z-index:1}
+  .gmap{border-radius:var(--radius);overflow:hidden;aspect-ratio:16/10;background:var(--green);box-shadow:0 30px 60px -25px rgba(0,0,0,.6)}
+  .gmap iframe{width:100%;height:100%;border:0}
+  .gmap-info h3{color:var(--cream);font-size:1.8rem;font-weight:400}
+  .gmap-info > p{color:rgba(247,241,230,.75);margin-top:10px}
+  .gmap-info .near{margin-top:22px}
+  .gmap-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+  @media (max-width:860px){.loc-head,.gmap-row{grid-template-columns:1fr}}
 
   /* ---------- Galería ---------- */
   .gallery{background:var(--paper)}
@@ -200,6 +267,7 @@
   .g-grid button:hover img{transform:scale(1.06)}
   .g-grid .w2{grid-column:span 2}
   .g-grid .h2{grid-row:span 2}
+  .g-grid .w4{grid-column:1/-1}
   @media (max-width:760px){.g-grid{grid-template-columns:1fr 1fr;grid-auto-rows:160px}}
   .lightbox{position:fixed;inset:0;z-index:100;background:rgba(20,14,10,.92);display:none;align-items:center;justify-content:center;padding:24px}
   .lightbox.open{display:flex;animation:fade .3s}
@@ -307,7 +375,7 @@
     <ul id="menu">
       <li><a href="#proyecto">El proyecto</a></li>
       <li><a href="#casas">Las casas</a></li>
-      <li><a href="#comercio">Comercio</a></li>
+      <li><a href="#amenidades">Amenidades</a></li>
       <li><a href="#ubicacion">Ubicación</a></li>
       <li><a href="#galeria">Galería</a></li>
       <li><a href="#cotizar" class="btn btn-primary">Cotizar</a></li>
@@ -319,9 +387,6 @@
 <header class="hero" id="inicio">
   <div class="hero-bg" id="heroBg" role="img" aria-label="Vista aérea del conjunto Serranías de Circasia entre montañas y cafetales"></div>
 
-  <svg class="cloud c1" viewBox="0 0 200 60" aria-hidden="true"><path fill="#fff" d="M30 50c-16 0-26-8-26-18s10-17 22-16C30 6 42 0 56 2c10 1 18 7 22 14 6-6 16-8 26-4 9 3 14 10 14 17 12-2 26 4 26 13 0 5-6 8-14 8z"/></svg>
-  <svg class="cloud c2" viewBox="0 0 200 60" aria-hidden="true"><path fill="#fff" d="M30 50c-16 0-26-8-26-18s10-17 22-16C30 6 42 0 56 2c10 1 18 7 22 14 6-6 16-8 26-4 9 3 14 10 14 17 12-2 26 4 26 13 0 5-6 8-14 8z"/></svg>
-  <svg class="cloud c3" viewBox="0 0 200 60" aria-hidden="true"><path fill="#fff" d="M30 50c-16 0-26-8-26-18s10-17 22-16C30 6 42 0 56 2c10 1 18 7 22 14 6-6 16-8 26-4 9 3 14 10 14 17 12-2 26 4 26 13 0 5-6 8-14 8z"/></svg>
 
   <div class="wrap hero-content">
     <p class="eyebrow reveal">Lanzamiento · Circasia, Quindío</p>
@@ -357,7 +422,7 @@
       <ul class="checks reveal d3">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Solo 55 casas, para mantener un ambiente tranquilo y entre vecinos</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Rodeado de cafetales, zonas verdes y vista a la cordillera</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Comercio a la salida del conjunto, para resolver lo del día a día sin coger el carro</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Zona comercial en el acceso del conjunto, para resolver el día a día sin necesidad de desplazarse</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Opciones de financiación disponibles</li>
       </ul>
     </div>
@@ -368,70 +433,103 @@
   </div>
 </section>
 
-<!-- ===================== CIFRAS ===================== -->
-<section class="stats pad" style="padding-block:70px" aria-label="Cifras del proyecto">
-  <div class="beans" id="beans" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="stat reveal"><b data-count="55">0</b><span>Casas</span></div>
-    <div class="stat reveal d1"><b data-count="24" data-suffix="h">0</b><span>Portería y vigilancia</span></div>
-    <div class="stat reveal d2"><b data-count="1">0</b><span>Parqueadero por casa</span></div>
-    <div class="stat reveal d3"><b data-count="600" data-prefix="$" data-suffix="M">0</b><span>Precio desde (COP)</span></div>
+<!-- ===================== FRANJA: ARQUITECTURA ===================== -->
+<section class="bleed bleed--corner" aria-label="Arquitectura tradicional y cifras del proyecto">
+  <img src="img/fachada-panoramica.jpg" alt="Hilera de casas blancas con tejas de barro y balcones de madera frente a las montañas al atardecer">
+  <div class="wrap"><h2 class="bleed-title">Arquitectura<br><em>tradicional</em></h2></div>
+  <div class="wrap facts">
+    <div class="fact"><b data-count="55">55</b><span>Casas</span></div>
+    <div class="fact"><b data-count="2">2</b><span>Tipologías</span></div>
+    <div class="fact"><b data-count="24" data-suffix=" h">24 h</b><span>Portería y vigilancia</span></div>
+    <div class="fact"><b data-count="600" data-prefix="$" data-suffix=" M">$600 M</b><span>Precio desde (COP)</span></div>
   </div>
+  <span class="bleed-note">Render ilustrativo*</span>
 </section>
 
-<!-- ===================== CASAS ===================== -->
+<!-- ===================== FRANJA: CASAS ===================== -->
+<section class="bleed bleed--center" aria-label="Casas de 2 y 3 alcobas">
+  <img src="img/calle-interior.jpg" alt="Calle interior del conjunto con casas tradicionales y cafetales al fondo" loading="lazy">
+  <div class="wrap">
+    <h2 class="bleed-title">Casas de<br><em>2 y 3 alcobas</em></h2>
+    <p>Dos niveles · Parqueadero privado · Balcón</p>
+  </div>
+  <span class="bleed-note">Render ilustrativo*</span>
+</section>
+
+<!-- ===================== TIPOLOGÍAS ===================== -->
 <section class="homes pad" id="casas">
   <div class="wrap">
     <div class="homes-head">
       <div>
         <p class="eyebrow reveal">Las casas</p>
-        <h2 class="reveal d1">Hechas para vivir <em>el Quindío</em></h2>
+        <h2 class="reveal d1">Dos tipologías, <em>un mismo estilo</em></h2>
       </div>
-      <p class="lead reveal d2" style="max-width:46ch">Áreas, distribución y acabados por confirmar. Pide tu cotización y te enviamos toda la información en cuanto esté lista.</p>
+      <p class="lead reveal d2" style="max-width:46ch">Todas las casas comparten un primer nivel amplio y luminoso. En el segundo nivel elige la distribución que mejor se adapte a tu familia.</p>
     </div>
 
-    <figure class="panorama reveal">
-      <img src="img/fachada-panoramica.png" alt="Hilera de casas blancas con tejas de barro y balcones de madera al atardecer">
-      <figcaption>Render ilustrativo</figcaption>
-    </figure>
-
-    <div class="features">
-      <article class="feature reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg></div>
-        <h3>Portería 24 horas</h3>
-        <p>Conjunto cerrado con control de acceso y vigilancia permanente para que vivas tranquilo.</p>
-      </article>
-      <article class="feature reveal d1">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l1.5-5h9L18 17"/><circle cx="8" cy="18.5" r="1.5"/><circle cx="16" cy="18.5" r="1.5"/><path d="M7.5 12 9 8h6l1.5 4"/></svg></div>
-        <h3>Parqueadero propio</h3>
-        <p>Cada casa tiene su parqueadero, y hay parqueadero de visitantes sin costo.</p>
-      </article>
-      <article class="feature reveal d2">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M12 12C12 7 8 4 4 4c0 5 3 8 8 8z"/><path d="M12 14c0-4 3-7 8-7 0 4-3 7-8 7z"/></svg></div>
-        <h3>Zonas verdes</h3>
-        <p>Jardines y espacios abiertos para los niños, las mascotas y para disfrutar el clima.</p>
-      </article>
-      <article class="feature reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 20 6-12 4 6 2-3 6 9z"/><circle cx="17" cy="5" r="2"/></svg></div>
-        <h3>Senderos</h3>
-        <p>Recorridos entre cafetales y vegetación nativa para caminar, trotar y desconectarte.</p>
-      </article>
-      <article class="feature reveal d1">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18l-1.5-5h-15z"/><path d="M4 9v11h16V9"/><path d="M10 20v-6h4v6"/></svg></div>
-        <h3>Comercio a la salida</h3>
-        <p>Locales en el frente del conjunto: panadería, café, tienda y más, a pocos pasos de tu casa.</p>
-      </article>
-      <article class="feature reveal d2">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-6 7 6v11"/><path d="M9 21v-6h6v6"/></svg></div>
-        <h3>Arquitectura tradicional</h3>
-        <p>Tejas de barro, balcones y ventanas en madera y fachadas con flores, al estilo del Eje Cafetero.</p>
-      </article>
+    <div class="type-tabs reveal" role="tablist" aria-label="Tipología">
+      <button role="tab" aria-selected="true" data-type="1">Tipo 1<small>2 alcobas</small></button>
+      <button role="tab" aria-selected="false" data-type="2">Tipo 2<small>3 alcobas</small></button>
     </div>
+
+    <div class="types reveal d1">
+      <div class="spec">
+        <h3>Casa <em id="tName">Tipo 1</em></h3>
+        <dl>
+          <div><dt>Alcobas</dt><dd id="tBeds">2</dd></div>
+          <div><dt>Baños</dt><dd id="tBaths">3 (2 privados y 1 social)</dd></div>
+          <div><dt>Niveles</dt><dd>2</dd></div>
+          <div><dt>Parqueadero</dt><dd>1 privado</dd></div>
+          <div><dt>Balcón</dt><dd>Sí</dd></div>
+          <div><dt>Área construida</dt><dd>Por confirmar</dd></div>
+        </dl>
+        <div class="levels">
+          <p><b>Nivel 1</b>Sala-comedor, cocina, patio, baño social y parqueadero.</p>
+          <p><b>Nivel 2</b><span id="tL2">2 alcobas, 2 baños privados y balcón.</span></p>
+        </div>
+        <a href="#cotizar" class="btn btn-primary" id="tCta">Cotizar Tipo 1
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <figure class="plan">
+        <div class="level-tabs" role="tablist" aria-label="Nivel">
+          <button role="tab" aria-selected="true" data-level="1">Nivel 1</button>
+          <button role="tab" aria-selected="false" data-level="2">Nivel 2</button>
+        </div>
+        <button class="plan-frame" id="planBtn" aria-label="Ampliar plano">
+          <img id="planImg" src="img/plano-nivel1.jpg" alt="Plano del nivel 1: sala-comedor, cocina, patio, baño social y parqueadero">
+        </button>
+        <figcaption><span id="planCap"><b>Nivel 1</b> · Sala-comedor, cocina, patio, baño social y parqueadero.</span><span>Toca el plano para ampliarlo</span></figcaption>
+      </figure>
+    </div>
+    <p style="margin-top:22px;font-size:.8rem;color:var(--muted)">Planos ilustrativos con amoblamiento sugerido. Áreas y especificaciones sujetas a cambios.</p>
+  </div>
+</section>
+
+<!-- ===================== AMENIDADES ===================== -->
+<section class="amenities pad" id="amenidades">
+  <div class="wrap">
+    <div class="am-head">
+      <div>
+        <p class="eyebrow reveal">Amenidades</p>
+        <h2 class="reveal d1">Pensado para <em>vivir con tranquilidad</em></h2>
+      </div>
+      <p class="reveal d2">Un conjunto cerrado de solo 55 casas, con la seguridad, los espacios y los servicios que tu familia necesita.</p>
+    </div>
+    <ol class="am-list">
+      <li class="reveal"><h3>Portería y vigilancia 24 horas</h3><p>Acceso controlado y vigilancia permanente, para la tranquilidad de toda la familia.</p></li>
+      <li class="reveal d1"><h3>Parqueadero privado</h3><p>Cada vivienda cuenta con su propio parqueadero, además de parqueaderos para visitantes sin costo adicional.</p></li>
+      <li class="reveal"><h3>Zonas verdes</h3><p>Jardines y espacios abiertos para compartir en familia y disfrutar del clima templado de la región.</p></li>
+      <li class="reveal d1"><h3>Senderos ecológicos</h3><p>Recorridos entre cafetales y vegetación nativa, ideales para caminar y desconectarse.</p></li>
+      <li class="reveal"><h3>Zona comercial en el acceso</h3><p>Locales comerciales en el frente del conjunto: panadería, cafetería, tienda y más.</p></li>
+      <li class="reveal d1"><h3>Arquitectura tradicional</h3><p>Tejas de barro, balcones y carpintería en madera, fieles al estilo del Eje Cafetero.</p></li>
+    </ol>
   </div>
 </section>
 
 <!-- Divisor: rama de café -->
-<div class="branch" id="branch" aria-hidden="true" style="background:var(--paper)">
+<div class="branch" id="branch" aria-hidden="true" style="background:var(--cream)">
   <svg viewBox="0 0 340 70" fill="none">
     <path class="draw" d="M10 40 C80 30 120 50 170 38 S270 26 330 36" stroke="#5A4334" stroke-width="2" stroke-linecap="round"/>
     <g class="leaf" style="transition-delay:.6s"><path d="M80 36 C70 18 92 10 102 22 C96 30 90 34 80 36Z" fill="#3F5B3A"/></g>
@@ -452,7 +550,7 @@
       <h2 class="reveal d1">Todo lo que necesitas, <em>a la salida de casa</em></h2>
       <p class="lead reveal d2">El frente del conjunto es una calle de locales comerciales al estilo de los pueblos del Quindío, con su panadería, su café y sus tiendas. Te tomas un tinto, compras el pan y vuelves caminando.</p>
       <div class="tags reveal d3">
-        <span>☕ Cafetería</span><span>🥖 Panadería</span><span>🛒 Tienda</span><span>🌺 Locales comerciales</span><span>🅿️ Parqueadero de visitantes gratis</span>
+        <span>☕ Cafetería</span><span>🥖 Panadería</span><span>🛒 Tienda</span><span>🌺 Locales comerciales</span><span>🅿️ Parqueadero de visitantes sin costo</span>
       </div>
     </div>
     <div class="stack reveal d1">
@@ -465,22 +563,53 @@
 <!-- ===================== UBICACIÓN ===================== -->
 <section class="location pad" id="ubicacion">
   <svg class="loc-bg" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true"><path fill="#7E9A6E" d="M0 120 L160 60 L300 110 L460 30 L620 100 L780 50 L940 115 L1100 40 L1260 100 L1440 60 L1440 200 L0 200Z"/></svg>
-  <div class="wrap loc-grid">
-    <div>
-      <p class="eyebrow reveal">Ubicación</p>
-      <h2 class="reveal d1">Circasia, <em>Quindío</em></h2>
-      <p class="lead reveal d2">En pleno Paisaje Cultural Cafetero, entre montañas, a pocos minutos de Armenia. Clima templado, aire limpio y la cordillera en frente.</p>
-      <ul class="loc-list reveal d3">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Circasia, Quindío · Colombia</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>A pocos minutos de Armenia</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-6-9 9-2-5z"/></svg>Cerca al Aeropuerto Internacional El Edén</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8C8 10 5.9 16.2 3.8 21.3"/><path d="M19 3c-1 6-4.5 10-11 11 0-6 4-10 11-11z"/></svg>Rodeado de cafetales y reservas naturales</li>
-      </ul>
+  <div class="wrap">
+    <div class="loc-head">
+      <div>
+        <p class="eyebrow reveal">Ubicación</p>
+        <h2 class="reveal d1">Circasia, <em>Quindío</em></h2>
+        <p class="lead reveal d2">El lote está en el sur del casco urbano de Circasia, sobre la vía a Montenegro, en pleno Paisaje Cultural Cafetero y con conexión directa a Armenia y Pereira.</p>
+      </div>
+      <div class="loc-facts reveal d2">
+        <div><b>12 km</b><span>de Armenia</span></div>
+        <div><b>1.772</b><span>msnm altitud media</span></div>
+        <div><b>91 km²</b><span>superficie del municipio</span></div>
+        <div><b>29.886</b><span>habitantes</span></div>
+      </div>
     </div>
-    <div class="map reveal d2">
-      <!-- TODO: reemplazar por la ubicación exacta del lote -->
-      <iframe title="Mapa de Circasia, Quindío" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        src="https://maps.google.com/maps?q=Circasia,+Quindio,+Colombia&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+
+    <div class="map-tabs reveal" role="tablist" aria-label="Mapas de ubicación">
+      <button role="tab" aria-selected="true" data-map="0">Municipio</button>
+      <button role="tab" aria-selected="false" data-map="1">Entorno del lote</button>
+      <button role="tab" aria-selected="false" data-map="2">Foto satelital</button>
+    </div>
+    <figure class="map-view reveal d1">
+      <button class="map-frame" id="mapBtn" aria-label="Ampliar mapa">
+        <img id="mapImg" src="img/ubicacion-municipio.jpg" alt="Mapa del municipio de Circasia con la ubicación de Serranías de Circasia al sur del casco urbano">
+      </button>
+      <figcaption><span id="mapCap">Al sur del casco urbano, sobre la vía a Montenegro y cerca de la vía Armenia–Pereira.</span><span>Toca el mapa para ampliarlo</span></figcaption>
+    </figure>
+
+    <div class="gmap-row">
+      <div class="gmap reveal">
+        <iframe title="Mapa de Serranías de Circasia" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+          src="https://maps.google.com/maps?q=4.615116,-75.644797&amp;z=15&amp;output=embed"></iframe>
+      </div>
+      <div class="gmap-info reveal d1">
+        <h3>Cómo llegar</h3>
+        <p>Sur de Circasia, sobre la vía a Montenegro. Abre la ubicación exacta en Google Maps o Waze desde tu celular.</p>
+        <ul class="near">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Vía a Montenegro</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Junto al estadio municipal</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Cerca de colegio</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>A minutos del parque principal</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Acceso a la vía Armenia–Pereira</li>
+        </ul>
+        <div class="gmap-btns">
+          <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=4.615116,-75.644797" target="_blank" rel="noopener">Abrir en Google Maps</a>
+          <a class="btn btn-ghost" href="https://waze.com/ul?ll=4.615116,-75.644797&amp;navigate=yes" target="_blank" rel="noopener">Waze</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -489,13 +618,14 @@
 <section class="gallery pad" id="galeria">
   <div class="wrap">
     <p class="eyebrow reveal">Galería</p>
-    <h2 class="reveal d1">Así se vivirá <em>Serranías</em></h2>
+    <h2 class="reveal d1">Así se vivirá en <em>Serranías de Circasia</em></h2>
     <div class="g-grid">
       <button class="w2 h2 reveal" data-src="img/aerea-montana.jpg"><img src="img/aerea-montana.jpg" alt="Vista aérea del conjunto entre montañas" loading="lazy"></button>
-      <button class="h2 reveal d1" data-src="img/casa-vertical.jpg"><img src="img/casa-vertical.jpg" alt="Fachada de casa con balcones de madera" loading="lazy"></button>
-      <button class="reveal d2" data-src="img/locales-calle.jpg"><img src="img/locales-calle.jpg" alt="Locales comerciales con toldos de colores" loading="lazy"></button>
-      <button class="reveal d3" data-src="img/aerea-locales.jpg"><img src="img/aerea-locales.jpg" alt="Vista aérea de casas y locales" loading="lazy"></button>
-      <button class="w2 reveal" data-src="img/fachada-panoramica.png" style="grid-column:span 4"><img src="img/fachada-panoramica.png" alt="Panorámica de la hilera de casas" loading="lazy"></button>
+      <button class="w2 h2 reveal d1" data-src="img/calle-interior.jpg"><img src="img/calle-interior.jpg" alt="Calle interior del conjunto" loading="lazy"></button>
+      <button class="w4 h2 reveal" data-src="img/fachada-panoramica.jpg"><img src="img/fachada-panoramica.jpg" alt="Panorámica de la hilera de casas" loading="lazy"></button>
+      <button class="h2 reveal" data-src="img/casa-vertical.jpg"><img src="img/casa-vertical.jpg" alt="Fachada de casa con balcones de madera" loading="lazy"></button>
+      <button class="w2 h2 reveal d1" data-src="img/locales-calle.jpg"><img src="img/locales-calle.jpg" alt="Locales comerciales con toldos de colores" loading="lazy"></button>
+      <button class="h2 reveal d2" data-src="img/aerea-locales.jpg"><img src="img/aerea-locales.jpg" alt="Vista aérea de casas y locales" loading="lazy"></button>
     </div>
     <p style="margin-top:16px;font-size:.8rem;color:var(--muted)">Imágenes ilustrativas. El proyecto final puede presentar variaciones.</p>
   </div>
@@ -557,6 +687,14 @@
               <option>Segunda vivienda / descanso</option>
               <option>Inversión</option>
               <option>Local comercial</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="tipologia">Tipología de interés</label>
+            <select id="tipologia" name="tipologia">
+              <option value="Tipo 1">Tipo 1 · 2 alcobas</option>
+              <option value="Tipo 2">Tipo 2 · 3 alcobas</option>
+              <option value="Aún no lo sé" selected>Aún no lo sé</option>
             </select>
           </div>
           <div class="field full">
@@ -634,6 +772,7 @@
         <ul>
           <li><a href="#proyecto">El proyecto</a></li>
           <li><a href="#casas">Las casas</a></li>
+          <li><a href="#amenidades">Amenidades</a></li>
           <li><a href="#comercio">Comercio</a></li>
           <li><a href="#ubicacion">Ubicación</a></li>
           <li><a href="#cotizar">Cotizar</a></li>
@@ -684,7 +823,7 @@
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, {threshold:.15, rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal, .branch').forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal, .branch, .bleed').forEach(el => io.observe(el));
 
   // Contadores
   const countIO = new IntersectionObserver((entries) => {
@@ -718,7 +857,6 @@
       box.appendChild(b);
     }
   };
-  spawnBeans('beans', 18);
   spawnBeans('beans2', 14, '#5A4334');
 
   // Parallax del hero (montañas + foto)
@@ -747,6 +885,65 @@
   document.getElementById('lbClose').addEventListener('click', closeLb);
   lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
   addEventListener('keydown', e => { if (e.key === 'Escape') { closeLb(); toggleMenu(false); } });
+
+  // Tipologías y planos
+  const TYPES = {
+    1: {beds:'2', baths:'3 (2 privados y 1 social)', l2:'2 alcobas, 2 baños privados y balcón.'},
+    2: {beds:'3', baths:'3 (1 privado, 1 auxiliar y 1 social)', l2:'3 alcobas, 1 baño auxiliar, 1 baño privado y balcón.'}
+  };
+  const L1 = 'Sala-comedor, cocina, patio, baño social y parqueadero.';
+  let curType = 1, curLevel = 1;
+  const planImg = document.getElementById('planImg');
+  [1,2].forEach(t => [1,2].forEach(l => { const i = new Image(); i.src = planSrc(t, l); }));
+  function planSrc(t, l){ return l === 1 ? 'img/plano-nivel1.jpg' : `img/plano-nivel2-tipo${t}.jpg`; }
+  function renderPlan(){
+    const t = TYPES[curType], txt = curLevel === 1 ? L1 : t.l2;
+    document.getElementById('tName').textContent = 'Tipo ' + curType;
+    document.getElementById('tBeds').textContent = t.beds;
+    document.getElementById('tBaths').textContent = t.baths;
+    document.getElementById('tL2').textContent = t.l2;
+    document.getElementById('tCta').firstChild.textContent = 'Cotizar Tipo ' + curType + ' ';
+    document.getElementById('planCap').innerHTML = `<b>Nivel ${curLevel}${curLevel === 2 ? ' · Tipo ' + curType : ''}</b> · ${txt}`;
+    const src = planSrc(curType, curLevel);
+    if (planImg.getAttribute('src') === src) return;
+    planImg.classList.add('fading');
+    setTimeout(() => {
+      planImg.src = src;
+      planImg.alt = `Plano del nivel ${curLevel}${curLevel === 2 ? ' tipo ' + curType : ''}: ${txt}`;
+      planImg.classList.remove('fading');
+    }, reduce ? 0 : 220);
+  }
+  const bindTabs = (sel, attr, set) => document.querySelectorAll(sel).forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll(sel).forEach(x => x.setAttribute('aria-selected', x === b));
+    set(+b.dataset[attr]); renderPlan();
+  }));
+  bindTabs('.type-tabs button', 'type', v => curType = v);
+  bindTabs('.level-tabs button', 'level', v => curLevel = v);
+  document.getElementById('planBtn').addEventListener('click', () => {
+    lbImg.src = planImg.src; lbImg.alt = planImg.alt; lb.classList.add('open');
+  });
+  document.getElementById('tCta').addEventListener('click', () => {
+    document.getElementById('tipologia').value = 'Tipo ' + curType;
+  });
+
+  // Mapas de ubicación
+  const MAPS = [
+    {src:'img/ubicacion-municipio.jpg', cap:'Al sur del casco urbano, sobre la vía a Montenegro y cerca de la vía Armenia–Pereira.', alt:'Mapa del municipio de Circasia con la ubicación de Serranías de Circasia al sur del casco urbano'},
+    {src:'img/ubicacion-entorno.jpg', cap:'Junto al estadio municipal, cerca de colegio y con salida directa hacia el parque principal y Montenegro.', alt:'Mapa del entorno del lote junto al estadio, el colegio y la vía a Montenegro'},
+    {src:'img/ubicacion-satelital.jpg', cap:'Foto satelital con la delimitación aproximada del lote.', alt:'Foto satelital con la delimitación del lote de Serranías de Circasia'}
+  ];
+  MAPS.forEach(m => { const i = new Image(); i.src = m.src; });
+  const mapImg = document.getElementById('mapImg');
+  document.querySelectorAll('.map-tabs button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.map-tabs button').forEach(x => x.setAttribute('aria-selected', x === b));
+    const m = MAPS[+b.dataset.map];
+    document.getElementById('mapCap').textContent = m.cap;
+    mapImg.classList.add('fading');
+    setTimeout(() => { mapImg.src = m.src; mapImg.alt = m.alt; mapImg.classList.remove('fading'); }, reduce ? 0 : 220);
+  }));
+  document.getElementById('mapBtn').addEventListener('click', () => {
+    lbImg.src = mapImg.src; lbImg.alt = mapImg.alt; lb.classList.add('open');
+  });
 
   // Enlaces de redes aún no disponibles
   const toast = document.getElementById('toast'); let tt;

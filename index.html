@@ -6,6 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Serranías de Circasia · Conjunto Residencial Cerrado</title>
 <meta name="description" content="Serranías de Circasia: 55 casas de estilo tradicional colombiano en conjunto cerrado, en el corazón de la montaña. Circasia, Quindío. Desde $600 millones.">
+<link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -59,7 +60,13 @@
   .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
   .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;transition:color .35s}
   .nav.scrolled .logo{color:var(--coffee)}
-  .logo svg{width:38px;height:38px;flex:none}
+  .logo-mark{position:relative;width:62px;height:34px;flex:none}
+  .logo-mark img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .35s}
+  .logo-mark .lm-color{opacity:0}
+  .nav.scrolled .lm-color{opacity:1}
+  .nav.scrolled .lm-light{opacity:0}
+  .intro-logo{width:clamp(140px,16vw,190px);height:auto;margin-bottom:26px}
+  .footer-logo img{width:170px;height:auto}
   .logo span{font-family:var(--display);font-size:1.25rem;line-height:1;font-weight:600}
   .logo small{display:block;font-family:var(--body);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;opacity:.8;margin-top:4px;font-weight:600}
   .nav ul{display:flex;gap:28px;list-style:none;align-items:center}
@@ -140,7 +147,7 @@
   /* título arriba a la izquierda + cifras abajo */
   .bleed--corner{justify-content:space-between}
   .bleed--corner > img{object-position:center 45%}
-  .bleed--corner::after{background:linear-gradient(180deg,rgba(30,22,16,.55) 0%,rgba(30,22,16,0) 42%,rgba(30,22,16,0) 55%,rgba(30,22,16,.8) 100%)}
+  .bleed--corner::after{background:linear-gradient(180deg,rgba(30,22,16,.62) 0%,rgba(30,22,16,.12) 48%,rgba(30,22,16,0) 55%,rgba(30,22,16,.8) 100%)}
   .bleed--corner .bleed-title{padding-top:clamp(60px,9vw,120px)}
   /* título centrado */
   .bleed--center{align-items:center;justify-content:center;text-align:center}
@@ -191,19 +198,17 @@
   .types{display:grid;grid-template-columns:minmax(230px,280px) 1fr;gap:clamp(28px,4vw,60px);margin-top:36px;align-items:start}
   .spec h3{font-size:clamp(1.5rem,2.2vw,1.9rem);font-weight:400}
   .spec h3 em{color:var(--terracotta)}
-  .spec dl{margin-top:22px;border-top:1px solid var(--line)}
-  .spec dl div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;font-size:.88rem;border-bottom:1px solid var(--line)}
-  .spec dt{color:var(--muted)}
-  .spec dd{font-weight:700;color:var(--coffee);text-align:right}
-  .spec .levels{margin-top:18px;display:grid;gap:10px;font-size:.86rem;color:var(--muted)}
-  .spec .levels b{color:var(--coffee);display:block;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase}
+  .kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+  .kpis div{background:var(--cream);border-radius:16px;padding:16px 18px}
+  .kpis b{display:block;font-family:var(--display);font-weight:400;font-size:2.2rem;line-height:1;color:var(--terracotta)}
+  .kpis span{display:block;margin-top:6px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--coffee-2)}
   .spec .btn{margin-top:28px}
   .plan{position:relative}
   .level-tabs{display:flex;gap:22px;border-bottom:1px solid var(--line);margin-bottom:18px}
   .level-tabs button{padding:10px 2px;font-weight:700;font-size:.95rem;border-bottom:2px solid transparent;margin-bottom:-1px}
   .level-tabs button[aria-selected="true"]{color:var(--terracotta);border-color:var(--terracotta)}
   .plan-frame{display:block;width:100%;border:0;padding:0;background:#f3f1ee;border-radius:var(--radius);overflow:hidden;cursor:zoom-in;box-shadow:var(--shadow)}
-  .plan-frame img{width:100%;aspect-ratio:2.25/1;object-fit:cover;object-position:top;transition:opacity .25s}
+  .plan-frame img{width:100%;height:auto;transition:opacity .25s}
   .plan-frame img.fading{opacity:0}
   .plan figcaption{margin-top:14px;color:var(--muted);font-size:.92rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .plan figcaption b{color:var(--coffee)}
@@ -240,8 +245,10 @@
   .stack img{border-radius:var(--radius);box-shadow:var(--shadow);object-fit:cover}
   .stack .a{width:88%;aspect-ratio:4/3}
   .stack .b{position:absolute;right:0;bottom:0;width:58%;aspect-ratio:16/10;border:6px solid var(--cream)}
-  .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-  .tags span{padding:8px 16px;border-radius:999px;background:var(--paper);border:1px solid var(--line);font-size:.88rem;font-weight:600;color:var(--coffee-2)}
+  .shop-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px 32px;margin-top:30px;max-width:460px}
+  .shop-list li{display:flex;align-items:center;gap:12px;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--coffee-2)}
+  .shop-list li::before{content:"";flex:none;width:7px;height:7px;transform:rotate(45deg);background:var(--gold)}
+  .shop-list li.wide{grid-column:1/-1}
   @media (max-width:860px){.commerce-grid{grid-template-columns:1fr}.commerce-grid .stack{order:-1}}
 
   /* ---------- Ubicación ---------- */
@@ -341,7 +348,6 @@
   /* ---------- Footer ---------- */
   footer{background:var(--coffee);color:rgba(247,241,230,.75);padding:70px 0 30px;font-size:.92rem}
   .f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
-  footer .logo{color:var(--cream)}
   footer h4{color:var(--cream);font-family:var(--display);font-size:1.1rem;margin-bottom:14px;font-weight:600}
   footer ul{list-style:none;display:grid;gap:8px}
   footer a{text-decoration:none}
@@ -381,12 +387,7 @@
 <nav class="nav" id="nav">
   <div class="wrap">
     <a href="#inicio" class="logo" aria-label="Serranías de Circasia, inicio">
-      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <path d="M2 32 L13 15 L19 23 L26 11 L38 32 Z" fill="currentColor" opacity=".9"/>
-        <path d="M26 11 L22 17.5 L26 16 L30 18 Z" fill="#F2C58E"/>
-        <ellipse cx="31" cy="7" rx="3" ry="4.2" transform="rotate(30 31 7)" fill="#B4532A"/>
-        <path d="M29.6 4.4 Q31.6 7 32.4 9.6" stroke="#F7F1E6" stroke-width=".9" fill="none"/>
-      </svg>
+      <span class="logo-mark"><img class="lm-light" src="img/logo-icono-blanco.png" alt=""><img class="lm-color" src="img/logo-icono.png" alt=""></span>
       <div><span>Serranías de Circasia</span><small>Conjunto residencial</small></div>
     </a>
     <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false">
@@ -428,6 +429,7 @@
 <section class="intro pad" id="proyecto">
   <div class="wrap intro-grid">
     <div>
+      <img class="intro-logo reveal" src="img/logo.png" alt="Logo de Serranías de Circasia">
       <p class="eyebrow reveal">El proyecto</p>
       <h2 class="reveal d1">Tradición cafetera, <em>vida tranquila</em></h2>
       <p class="lead reveal d2">Serranías de Circasia recupera la arquitectura que ha definido al Quindío por generaciones: tejas de barro, muros blancos, balcones de madera y fachadas llenas de flores. La diferencia es que aquí también tienes la seguridad y comodidad de un conjunto cerrado.</p>
@@ -447,7 +449,7 @@
 
 <!-- ===================== FRANJA: ARQUITECTURA ===================== -->
 <section class="bleed bleed--corner" aria-label="Arquitectura tradicional y cifras del proyecto">
-  <img src="img/fachada-panoramica.jpg" alt="Hilera de casas blancas con tejas de barro y balcones de madera frente a las montañas al atardecer">
+  <img src="img/fachada-galeria.jpg" alt="Hilera de casas blancas con tejas de barro, balcones de colores y palmas de cera frente a las montañas">
   <div class="wrap"><h2 class="bleed-title">Arquitectura<br><em>tradicional</em></h2></div>
   <div class="wrap facts">
     <div class="fact"><b data-count="55">55</b><span>Casas</span></div>
@@ -536,17 +538,13 @@
     <div class="types reveal d1">
       <div class="spec">
         <h3>Casa <em id="tName">Tipo 1</em></h3>
-        <dl>
-          <div><dt>Alcobas</dt><dd id="tBeds">2</dd></div>
-          <div><dt>Baños</dt><dd id="tBaths">3 (2 privados y 1 social)</dd></div>
-          <div><dt>Niveles</dt><dd>2</dd></div>
-          <div><dt>Parqueadero</dt><dd>1 privado</dd></div>
-          <div><dt>Balcón</dt><dd>Sí</dd></div>
-          <div><dt>Área construida</dt><dd>Por confirmar</dd></div>
-        </dl>
-        <div class="levels">
-          <p><b>Nivel 1</b>Sala-comedor, cocina, patio, baño social y parqueadero.</p>
-          <p><b>Nivel 2</b><span id="tL2">2 alcobas, 2 baños privados y balcón.</span></p>
+        <div class="kpis">
+          <div><b id="tBeds">2</b><span>Alcobas</span></div>
+          <div><b>3</b><span>Baños</span></div>
+          <div><b>2</b><span>Niveles</span></div>
+          <div><b>1</b><span>Parqueadero</span></div>
+          <div><b>1½</b><span>Balcones</span></div>
+          <div><b>— m²</b><span>Área</span></div>
         </div>
         <a href="#cotizar" class="btn btn-primary" id="tCta">Cotizar Tipo 1
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -610,9 +608,9 @@
       <p class="eyebrow reveal">Comercio</p>
       <h2 class="reveal d1">Todo lo que necesitas, <em>a la salida de casa</em></h2>
       <p class="lead reveal d2">El frente del conjunto es una calle de locales comerciales al estilo de los pueblos del Quindío, con su panadería, su café y sus tiendas. Te tomas un tinto, compras el pan y vuelves caminando.</p>
-      <div class="tags reveal d3">
-        <span>☕ Cafetería</span><span>🥖 Panadería</span><span>🛒 Tienda</span><span>🌺 Locales comerciales</span><span>🅿️ Parqueadero de visitantes sin costo</span>
-      </div>
+      <ul class="shop-list reveal d3">
+        <li>Cafetería</li><li>Panadería</li><li>Tienda</li><li>Locales comerciales</li><li class="wide">Parqueadero de visitantes sin costo</li>
+      </ul>
     </div>
     <div class="stack reveal d1">
       <img class="a" src="img/locales-calle.jpg" alt="Calle de locales comerciales con toldos de colores frente al conjunto">
@@ -683,7 +681,7 @@
     <div class="g-grid">
       <button class="w2 h2 reveal" data-src="img/aerea-montana.jpg"><img src="img/aerea-montana.jpg" alt="Vista aérea del conjunto entre montañas" loading="lazy"></button>
       <button class="w2 h2 reveal d1" data-src="img/calle-interior.jpg"><img src="img/calle-interior.jpg" alt="Calle interior del conjunto" loading="lazy"></button>
-      <button class="w4 h2 reveal" data-src="img/fachada-panoramica.jpg"><img src="img/fachada-panoramica.jpg" alt="Panorámica de la hilera de casas" loading="lazy"></button>
+      <button class="w4 h2 reveal" data-src="img/fachada-galeria.jpg"><img src="img/fachada-galeria.jpg" alt="Panorámica de la hilera de casas" loading="lazy"></button>
       <button class="h2 reveal" data-src="img/casa-vertical.jpg"><img src="img/casa-vertical.jpg" alt="Fachada de casa con balcones de madera" loading="lazy"></button>
       <button class="w2 h2 reveal d1" data-src="img/locales-calle.jpg"><img src="img/locales-calle.jpg" alt="Locales comerciales con toldos de colores" loading="lazy"></button>
       <button class="h2 reveal d2" data-src="img/aerea-locales.jpg"><img src="img/aerea-locales.jpg" alt="Vista aérea de casas y locales" loading="lazy"></button>
@@ -801,7 +799,7 @@
           <rect x="14" y="96" width="92" height="6" rx="3" fill="#3B2A20"/>
         </svg>
         <h3>¡Gracias, <span id="sName"></span>!</h3>
-        <p>Recibimos tu solicitud. Un asesor te contactará muy pronto.<br>Mientras tanto, prepárate un tinto. ☕</p>
+        <p>Recibimos tu solicitud. Un asesor te contactará muy pronto.<br>Mientras tanto, prepárate un tinto.</p>
       </div>
     </div>
   </div>
@@ -812,14 +810,7 @@
   <div class="wrap">
     <div class="f-grid">
       <div>
-        <a href="#inicio" class="logo">
-          <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
-            <path d="M2 32 L13 15 L19 23 L26 11 L38 32 Z" fill="currentColor" opacity=".9"/>
-            <path d="M26 11 L22 17.5 L26 16 L30 18 Z" fill="#F2C58E"/>
-            <ellipse cx="31" cy="7" rx="3" ry="4.2" transform="rotate(30 31 7)" fill="#B4532A"/>
-          </svg>
-          <div><span>Serranías de Circasia</span><small>Conjunto residencial</small></div>
-        </a>
+        <a href="#inicio" class="footer-logo" aria-label="Serranías de Circasia, inicio"><img src="img/logo-blanco.png" alt="Serranías de Circasia"></a>
         <p style="margin-top:18px;max-width:38ch">Un proyecto de <strong style="color:var(--cream)">Constructora Urbanistika</strong>. Casas de estilo tradicional en el corazón de la montaña quindiana.</p>
         <div class="socials">
           <a href="#" data-soon aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
@@ -860,7 +851,7 @@
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4.1 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
 </a>
 
-<div class="toast" id="toast">Muy pronto: estamos preparando nuestras redes ✨</div>
+<div class="toast" id="toast">Muy pronto: estamos preparando nuestras redes.</div>
 
 <script>
 (() => {
@@ -949,8 +940,8 @@
 
   // Tipologías y planos
   const TYPES = {
-    1: {beds:'2', baths:'3 (2 privados y 1 social)', l2:'2 alcobas, 2 baños privados y balcón.'},
-    2: {beds:'3', baths:'3 (1 privado, 1 auxiliar y 1 social)', l2:'3 alcobas, 1 baño auxiliar, 1 baño privado y balcón.'}
+    1: {beds:'2', l2:'2 alcobas, 2 baños privados y balcón.'},
+    2: {beds:'3', l2:'3 alcobas, 1 baño auxiliar, 1 baño privado y balcón.'}
   };
   const L1 = 'Sala-comedor, cocina, patio, baño social y parqueadero.';
   let curType = 1, curLevel = 1;
@@ -961,8 +952,6 @@
     const t = TYPES[curType], txt = curLevel === 1 ? L1 : t.l2;
     document.getElementById('tName').textContent = 'Tipo ' + curType;
     document.getElementById('tBeds').textContent = t.beds;
-    document.getElementById('tBaths').textContent = t.baths;
-    document.getElementById('tL2').textContent = t.l2;
     document.getElementById('tCta').firstChild.textContent = 'Cotizar Tipo ' + curType + ' ';
     document.getElementById('planCap').innerHTML = `<b>Nivel ${curLevel}${curLevel === 2 ? ' · Tipo ' + curType : ''}</b> · ${txt}`;
     const src = planSrc(curType, curLevel);
